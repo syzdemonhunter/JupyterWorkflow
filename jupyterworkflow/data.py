@@ -28,10 +28,10 @@ def get_fremont_data(filename='Fremont.csv', url=FREMONT_URL, force_download=Fal
     data_tmp = pd.read_csv('Fremont.csv', index_col='Date')
 
     try:
-        data_tmp.index = pd.to_datetime(data_tmp.index, format='%m/%d/%Y %H:%M:%S %p')
+        data_tmp.index = pd.to_datetime(data_tmp.index, format='%m/%d/%Y %I:%M:%S %p')
     except TypeError:
         data_tmp.index = pd.to_datetime(data_tmp.index)
-    
+
     data = data_tmp[['Fremont Bridge East Sidewalk', 'Fremont Bridge West Sidewalk']]
     data.columns = ['East', 'West']
     data['Total'] = data['West'] + data['East']
